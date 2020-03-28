@@ -1,0 +1,305 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#parent {
+    display: grid;
+    /* grid-template-columns: 100px 300px;*/
+    /* grid-template-columns: 25% 75%; */
+    /* fraction (fr) */
+    grid-template-columns: 2fr 1fr;
+    /* grid grid-template-columns: 50px 1fr; */
+}
+
+#minmax {
+    display: grid;
+    grid-template-columns: 1fr
+    minmax(50px, max-content) 1fr;
+}
+
+#pattern {
+    display: grid;
+    grid-template-columns: repeat(4,50px 100px);
+    
+    /*grid-template-columns:
+        1 fr repeat(2, 50px 75px) 1fr;*/
+    
+}
+/* 
+    Same for grid-template-rows
+    repeat()
+    minmax()
+    max-content()
+    min-content()
+    etc.
+*/
+
+#autofill {
+    display: grid;
+    /* automatixally fill up the space */
+    grid-template-columns: repeat(auto-fill, 50px);
+}
+
+#autorows {
+    display: grid;
+    grid-template-columns: 50px 1fr;/* explicit declaration of columns */
+    grid-template-rows: 70px 100px;
+    grid-auto-rows: 30px;
+}
+
+/* implicit grid items */
+#autoflow {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 70px 100px;
+    grid-auto-flow: column;
+}
+
+/*space */
+#gap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 5px 20px;
+}
+
+
+/* Grid lines 
+    same for rows*/
+#gridlines {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+#one {
+    grid-column: 1 / span 4; /* span stops unitl spans */
+}
+
+#two {
+    grid-column: 1 / 4;
+}
+
+#three {
+    grid-column: 1;
+}
+#four {
+    grid-column: 2;
+}
+
+#five {
+    grid-column: 1 / -1;
+}
+/* ------------*/
+
+#gridlinesnames {
+    display: grid;
+    grid-template-columns: 
+    [grid-start] 1fr
+    [content-start] 1fr
+    [content-end] 1fr
+    [grid-end];
+    grid-template-rows: 1fr 5fr 1fr;
+}
+
+#five2, #one2 {
+    grid-column: grid-start / grid-end;
+}
+
+#gridlinesnamescombined {
+    display: grid;
+    grid-gap: 5px 5px;
+    /*
+    grid-template-columns:
+    [grid-start] 1fr
+    [content-start] 1fr
+    [content-end] 1fr
+    [grid-end];
+    grid-template-rows: 
+    [header-start] 1fr
+    [header-end body-start] 5fr
+    [body-end footer-start] 1fr
+    [footer-end];
+    */
+    grid-template-columns: 
+    [content-start] 1fr
+    1fr
+    [content-end] 1fr;
+    grid-template-rows: 
+    1fr
+    [content-start] 5fr
+    1fr
+    [content-end];
+}
+
+#one3 {
+    /*grid-column: grid-start / grid-end;*/
+    grid-column: 1 / -1;
+}
+
+#two3 {
+    /* samename-start samename-end
+    let you use only the name to organize the grid, only with the samenames*/
+    /*grid-area: body-start / grid-start / footer-end / content-end;*/
+    grid-area: content;
+}
+
+#four3 {
+    /*grid-column: content-end / grid-end;*/
+    grid-column: 3 / -1;
+}
+
+#gridtemplateareas {
+    display: grid;
+    grid-gap: 5px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 1fr;
+    grid-template-areas: "header header header"
+                         "nav    main   ads"
+                         "nav    main   featured"
+                         "footer footer footer";
+}
+
+#one4 {
+    grid-area: header;
+}
+
+#two4 {
+    grid-area: nav;
+}
+
+#three4 {
+    grid-area: main;
+}
+
+#four4 {
+    grid-area: ads;
+}
+
+#five4 {
+     grid-area: featured;
+ }
+ 
+ #six4 {
+     grid-area: footer;
+ }
+ 
+ #areasauto {
+    display: grid;
+    display: grid;
+    grid-gap: 5px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 1fr;
+    grid-template-areas: "header header header"
+                          "nav    main   ads"
+                          "nav    main   featured"
+                          "footer footer footer";
+     
+     
+ }
+ #extra {
+     grid-row: header-start / footer-end;
+     grid-column: header-start / nav-end;
+     background-color: red !important;
+     outline: 1px solid black;
+     opacity: .5;
+ }
+ 
+ #one5{
+    grid-area: header;
+}
+
+#two5{
+    grid-area: nav;
+}
+
+#three5{
+    grid-area: main;
+}
+
+#four5{
+    grid-area: ads;
+}
+
+#five5{
+     grid-area: featured;
+ }
+ 
+ #six5{
+     grid-area: footer;
+ }
+ 
+/*browser of certain size*/
+@media screen and (min-width:601px) {
+    #responsive {
+        display: grid;
+        grid-gap: 5px 5px;  
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 1fr 2fr 2fr 1fr;
+        grid-template-areas: "header header header"
+                             "nav    main   ads"
+                             "nav    main   featured"
+                             "footer footer footer";
+       }
+}
+/*middle one*/
+@media screen and (max-width:600px) and (min-width:401px){
+    #responsive {
+        display: grid;
+        grid-gap: 5px 5px;  
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+        grid-template-areas: "header header"
+                             "nav    main"
+                             "ads    main"
+                             "featured main"
+                             "footer footer";
+                             /* "." to create blank areas*/
+       }
+}
+
+
+@media screen and (max-width:400px){
+    #responsive {
+        display: grid;
+        grid-gap: 5px 5px;  
+        grid-template-columns: 1fr; 
+        grid-template-areas: "header"
+                             "nav"
+                             "main"
+                             "footer";
+       }
+       
+       #four6 { 
+           display: none;
+       }
+       
+       #five6 {
+           display: none;
+       }
+}
+
+#one6{
+    grid-area: header;
+}
+
+#two6{
+    grid-area: nav;
+}
+
+#three6{
+    grid-area: main;
+}
+
+#four6{
+    grid-area: ads;
+}
+
+#five6{
+     grid-area: featured;
+ }
+ 
+ #six6{
+     grid-area: footer;
+ }
+
