@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { AuthService } from '../auth.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,8 +12,11 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 export class LoginComponent {
   isLoading = false;
 
-  onLogin(form: NgForm) {
+  constructor(public authService: AuthService) {}
 
+  onLogin(form: NgForm) {
+    if(form.invalid) return;
+    this.authService.login(form.value.email, form.value.password);
   }
 }
 
