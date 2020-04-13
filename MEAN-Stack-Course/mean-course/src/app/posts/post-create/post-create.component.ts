@@ -1,10 +1,11 @@
-import  { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import  { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { PostsService } from '../posts.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from "./mime-type.validator";
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-post-create',
@@ -12,7 +13,7 @@ import { mimeType } from "./mime-type.validator";
   styleUrls: ['./post-create.component.css']
 })
 
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent implements OnInit, OnDestroy {
   enteredTitle = "";
   enteredContent = "";
   post: Post;
@@ -21,12 +22,16 @@ export class PostCreateComponent implements OnInit {
   imagePreview: string;
   private mode = 'create';
   private postId: string;
-
+  private authStatusSub: Subscription;
   // CONVENTION: You always start with 'on' methods that are triggered with events
 
-  constructor(public postsService: PostsService, public route: ActivatedRoute) {}
+  constructor(public postsService: PostsService, public route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.getAuthStatusListener()
+    .subscribe(authStatus => {
+        this.isLoading = false;
+      });
     this.form = new FormGroup({
       'title': new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
@@ -42,7 +47,13 @@ export class PostCreateComponent implements OnInit {
         this.isLoading = true;
         this.postsService.getPost(this.postId).subscribe(postData => {
           this.isLoading = false;
-          this.post = {id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath};
+          this.post = {
+            id: postData._id,
+            title: postData.title,
+            content: postData.content,
+            imagePath: postData.imagePath,
+            creator: postData.creator
+          };
           this.form.setValue({'title': this.post.title, 'content': this.post.content, 'image': this.post.imagePath});
         });
       } else {
@@ -74,5 +85,9 @@ export class PostCreateComponent implements OnInit {
       this.postsService.updatePost(this.postId,this.form.value.title, this.form.value.content, this.form.value.image);
     }
     this.form.reset();
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 }
