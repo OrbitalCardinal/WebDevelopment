@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 
