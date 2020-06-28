@@ -1,0 +1,30 @@
+input {
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid rgb(146, 146, 146);
+    transition: ease 0.5s;
+    
+}
+
+input:focus {
+    border: 2px solid rgb(60, 112, 255);
+}
+
+button {
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(60, 112, 255);
+    transition: ease 0.2s;
+}
+
+button:hover {
+    background-color: rgb(34, 66, 155);
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
