@@ -11,4 +11,14 @@
     </div>
   </div>
 </div>
-<button class="blue-btn">Display details</button>
+<div>
+  <button class="blue-btn" (click)="enableText()">Display details</button>
+  <span *ngIf="enable">Secret text here</span>
+</div>
+<ul>
+  <li *ngFor="let item of clickLog">
+    <p [ngStyle]="{'background-color': item >= 5 ? 'blue' : 'white'}" [ngClass]="{'white-text': item >= 5 }">
+      {{ item }}
+    </p>
+  </li>
+</ul>
