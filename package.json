@@ -1,0 +1,28 @@
+{
+  "name": "plotly-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OrbitalCardinal/WebDevelopment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OrbitalCardinal/WebDevelopment/issues"
+  },
+  "homepage": "https://github.com/OrbitalCardinal/WebDevelopment#readme",
+  "dependencies": {
+    "chart.js": "^3.5.0",
+    "express": "^4.17.1",
+    "plotly.js-dist": "^2.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
