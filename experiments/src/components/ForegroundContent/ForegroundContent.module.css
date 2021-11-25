@@ -1,0 +1,14 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+}
+
+.content {
+    padding: 5em;
+}
